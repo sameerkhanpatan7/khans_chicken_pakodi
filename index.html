@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bismillah Chicken Pakodi Shop</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<a href="#home">Home</a>
+<a href="#menu">Menu</a>
+<a href="#location">Location</a>
+<a href="#contact">Contact</a>
+<a href="cart.html" class="cart-icon">
+🛒 Cart <span id="cart-count">0</span>
+</a>
+</nav>
+
+<header id="home" class="header">
+
+<h1>🍗 Bismillah Chicken Pakodi</h1>
+
+<div id="shop-status" class="status-badge">
+<span class="status-dot"></span>
+<span id="status-text">Checking...</span>
+</div>
+
+<div id="countdown" class="countdown-text"></div>
+
+<p>Open Time : 4:00 PM – 11:00 PM</p>
+
+</header>
+
+
+<div class="owner-name">
+<span class="chef-icon">👩‍🍳</span>
+
+<span class="owner-text">
+<span class="owner-label">Proprietor</span>
+<span class="owner-dash">-</span>
+<span class="owner-person">Saida</span>
+</span>
+
+</div>
+
+
+<div class="visit-banner">
+<div class="banner-text">
+🍗 Visit Our Shop Today • Fresh Chicken Pakodi Available • Chicken Wings • Chicken Joints • Chicken Liver Fry • Hot & Crispy Snacks Every Day •
+</div>
+</div>
+
+
+<section class="slider">
+
+<div class="slides">
+
+<img class="slide active" src="images/image2.jpeg">
+<img class="slide" src="images/image4.jpeg">
+<img class="slide" src="images/image5.jpeg">
+
+</div>
+
+<button class="prev" onclick="prevSlide()">❮</button>
+<button class="next" onclick="nextSlide()">❯</button>
+
+</section>
+
+
+<section class="about">
+
+<h2>About Us</h2>
+
+<p>
+Bismillah Chicken Pakodi Shop serves fresh and crispy chicken snacks every evening.
+We prepare food daily using fresh chicken and special spices.
+Visit our shop for delicious pakodi, wings, joints, and liver fry.
+Address: Nambur Center
+</p>
+
+</section>
+
+
+<section id="menu" class="menu">
+
+<h2>Our Menu</h2>
+
+<div class="menu-items">
+
+
+<!-- Chicken Pakodi -->
+<div class="item">
+
+<div class="food-img">
+<img src="images/pakodi.jpg">
+</div>
+
+<h3>Chicken Pakodi</h3>
+
+<select id="pakodiQty">
+
+<option value="50">100g - ₹50</option>
+<option value="120">250g - ₹120</option>
+<option value="240">500g - ₹240</option>
+<option value="500">1kg - ₹500</option>
+
+</select>
+
+<div class="menu-buttons">
+
+<button onclick="
+flyToCart(this.closest('.item').querySelector('img'));
+addToCart(
+'Chicken Pakodi',
+document.getElementById('pakodiQty').value,
+document.getElementById('pakodiQty').options[document.getElementById('pakodiQty').selectedIndex].text
+)
+">
+🛒 Add to Cart
+</button>
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- Chicken Wings -->
+
+<div class="item">
+
+<div class="food-img">
+<img src="images/wings.jpg">
+</div>
+
+<h3>Chicken Wings</h3>
+
+<div class="menu-details">
+<p>3 Wings = ₹50</p>
+</div>
+
+<div class="menu-buttons">
+<button onclick="
+flyToCart(this.closest('.item').querySelector('img'));
+addToCart('Chicken Wings',50)
+">
+🛒 Add to Cart
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- Chicken Joints -->
+
+<div class="item">
+
+<div class="food-img">
+<img src="images/joints.jpg">
+</div>
+
+<h3>Chicken Joints</h3>
+
+<div class="menu-details">
+<p>1 Joint = ₹50</p>
+</div>
+
+<div class="menu-buttons">
+<button onclick="
+flyToCart(this.closest('.item').querySelector('img'));
+addToCart('Chicken Joints',50)
+">
+🛒 Add to Cart
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- Chicken Liver Fry -->
+
+<div class="item">
+
+<div class="food-img">
+<img src="images/liver.jpg">
+</div>
+<h3>Chicken Liver Fry</h3>
+
+<select id="liverQty">
+
+<option value="50">100g - ₹50</option>
+<option value="120">250g - ₹120</option>
+<option value="240">500g - ₹240</option>
+
+</select>
+
+<div class="menu-buttons">
+
+<button onclick="
+flyToCart(this.closest('.item').querySelector('img'));
+addToCart(
+'Chicken Liver Fry',
+document.getElementById('liverQty').value,
+document.getElementById('liverQty').options[
+document.getElementById('liverQty').selectedIndex
+].text
+)
+">
+🛒 Add to Cart
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="catering">
+
+<h2>🍗 Orders & Catering</h2>
+
+<p>We also take bulk orders for special occasions.</p>
+
+<ul>
+<li>✔ Birthday Parties</li>
+<li>✔ Family Functions</li>
+<li>✔ Small Events</li>
+<li>✔ Bulk Chicken Pakodi Orders</li>
+</ul>
+
+<p class="catering-contact">
+📞 Call us for orders: <b>9391673220</b>
+</p>
+
+<a class="catering-btn" href="tel:9391673220">
+Book Catering
+</a>
+
+</section>
+
+
+
+<section id="location" class="location">
+
+<h2>Our Location</h2>
+
+<iframe
+src="https://maps.google.com/maps?q=Nambur&t=&z=13&ie=UTF8&iwloc=&output=embed"
+width="100%"
+height="350">
+</iframe>
+
+<div class="address-box">
+
+<h3>Shop Address</h3>
+
+<p>
+Nambur Centre <br>
+Beside Water Service Point <br>
+Nambur
+</p>
+
+<a class="direction-btn"
+href="https://www.google.com/maps/search/?api=1&query=Nambur"
+target="_blank">
+Get Directions
+</a>
+
+</div>
+
+</section>
+
+
+
+<a class="order-btn" href="https://wa.me/919391673220">
+Order on WhatsApp
+</a>
+
+<a class="call-btn" href="tel:9391673220">
+📞 Call Now
+</a>
+
+
+
+<footer id="contact">
+
+<p>Contact: 9391673220</p>
+<p>Open: 4 PM – 11 PM</p>
+
+</footer>
+
+
+
+<button onclick="topFunction()" id="topBtn">↑</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>

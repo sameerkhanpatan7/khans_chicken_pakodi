@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Your Cart</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.cart-container{
+max-width:800px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+border-bottom:1px solid #eee;
+font-size:18px;
+}
+
+.remove-btn{
+background:red;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+margin-top:20px;
+text-align:right;
+}
+
+.whatsapp-order{
+display:block;
+margin-top:25px;
+background:#25D366;
+color:white;
+padding:15px;
+text-align:center;
+border-radius:25px;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+}
+
+.clear-btn{
+margin-top:15px;
+background:#ff512f;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1 style="text-align:center;">🛒 Your Cart</h1>
+
+<div class="cart-container">
+
+<div id="cart-items"></div>
+
+<div id="total" class="total"></div>
+
+<button class="clear-btn" onclick="clearCart()">Clear Cart</button>
+
+<a id="whatsapp-order" class="whatsapp-order" target="_blank">
+📲 Order on WhatsApp
+</a>
+
+</div>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let cartDiv = document.getElementById("cart-items");
+
+let total = 0;
+
+let message = "Hello, I want to order:\n\n";
+
+function renderCart(){
+
+cartDiv.innerHTML="";
+total=0;
+message="Hello, I want to order:\n\n";
+
+cart.forEach(function(item,index){
+
+let div=document.createElement("div");
+
+div.className="cart-item";
+
+let itemTotal = item.price * item.count;
+
+div.innerHTML = `
+<span>
+${item.name} (${item.qtyText || ""})
+</span>
+
+<div>
+
+<button onclick="decreaseQty(${index})">➖</button>
+
+<b style="margin:0 10px;">${item.count}</b>
+
+<button onclick="increaseQty(${index})">➕</button>
+
+</div>
+
+<span>₹${itemTotal}</span>
+
+<button class="remove-btn" onclick="removeItem(${index})">
+Remove
+</button>
+`;
+
+cartDiv.appendChild(div);
+
+total += itemTotal;
+
+message += `${item.name} (${item.qtyText || ""}) × ${item.count} = ₹${itemTotal}\n`;
+
+});
+
+document.getElementById("total").innerHTML="Total: ₹"+total;
+
+message += "\nTotal: ₹"+total;
+
+document.getElementById("whatsapp-order").href =
+"https://wa.me/919391673220?text="+encodeURIComponent(message);
+
+}
+
+function increaseQty(index){
+
+cart[index].count++;
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+renderCart();
+
+}
+
+function decreaseQty(index){
+
+if(cart[index].count > 1){
+
+cart[index].count--;
+
+}else{
+
+cart.splice(index,1);
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+renderCart();
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+renderCart();
+
+}
+
+function clearCart(){
+
+localStorage.removeItem("cart");
+
+location.reload();
+
+}
+
+renderCart();
+
+</script>
